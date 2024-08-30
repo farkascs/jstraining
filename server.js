@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
 const express = require('express');
 const ejs = require('ejs');
+//const fetch = require('node-fetch');
 
 const couchdbBaseUrl = 'http://127.0.0.1:5984/';
 
@@ -9,15 +9,16 @@ app.set('view engine', 'ejs');
 
 //routing path
 app.get('/', (req, res) => {
-    res.send('Hello World!');
-  });
+  res.send('Hello World!');
+});
 
 // Start the server
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
-  });
+app.listen(2000, () => {
+  console.log('Server started on port 2000');
+});
 
-const getDbs = async () => {
+
+const checkCouchDB = async () => {
     const requestEndpoint = '';
     const requestParams = '';
     const urlToFetch = couchdbBaseUrl + requestEndpoint + requestParams;
@@ -25,10 +26,10 @@ const getDbs = async () => {
       const response = await fetch(urlToFetch);
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
-        const genres = jsonResponse.genres;
-        console.log(genres);
-        return genres;
+        console.log('CouchDB Online');
+        return jsonResponse;
+      } else {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
     }
     catch (error) {
@@ -36,4 +37,4 @@ const getDbs = async () => {
     }
 };
 
-// getDbs();
+checkCouchDB();
