@@ -1,6 +1,5 @@
 const express = require('express');
 const ejs = require('ejs');
-//const fetch = require('node-fetch');
 
 const couchdbBaseUrl = 'http://127.0.0.1:5984/';
 
@@ -9,7 +8,7 @@ app.set('view engine', 'ejs');
 
 //routing path
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.render('index', {title: 'Sample SSR page'});
 });
 
 // Start the server
