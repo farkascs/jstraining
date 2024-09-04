@@ -1,4 +1,4 @@
-const user = require('user');
+//const axios = require('axios');const user = require('user');
 
 const couchdbBaseUrl = 'http://127.0.0.1:5984/';
 
@@ -17,28 +17,17 @@ const couchDbGet = async (baseUrl, requestEndpoint, requestParams) => {
       console.log(error);
     }
 };
-/*
-couchDbGet(couchdbBaseUrl, '/_uuids', '?count=1')
-    .then(data => console.log(data.uuids[0]))
-    .catch(error => console.error(error));
 
-
-//store the received uuid in a variable
-let uuid = '';
-couchDbGet(couchdbBaseUrl, '/_uuids', '?count=1')
-    .then(data => uuid = data.uuids[0])
-    .catch(error => console.error(error));
-*/
 const getNewUuids = async (baseUrl, numOfUuids) => {
     try{  
       const requestEndpoint = '/_uuids';
       const requestParams = `?count=${numOfUuids}`;
-      const data = await couchDbGet (baseUrl, requestEndpoint, requestParams);
-      return data.uuids;
+      const response = await couchDbGet (baseUrl, requestEndpoint, requestParams);
     }
     catch (error) {
       console.error(error);
     }
+    
 }
 const uuids = await getNewUuids(couchdbBaseUrl, 1);
 console.log(uuids);

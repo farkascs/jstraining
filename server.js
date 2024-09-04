@@ -1,6 +1,7 @@
 const express = require('express');
 const ejs = require('ejs');
 
+
 const couchdbBaseUrl = 'http://127.0.0.1:5984/';
 
 const app = express();
@@ -16,7 +17,7 @@ app.listen(2000, () => {
   console.log('Server started on port 2000');
 });
 
-
+/*
 const checkCouchDB = async () => {
     const requestEndpoint = '';
     const requestParams = '';
@@ -37,3 +38,9 @@ const checkCouchDB = async () => {
 };
 
 checkCouchDB();
+*/
+
+fetch(couchdbBaseUrl)
+  .then(data => console.log('CouchDB online'))
+  .catch(error => console.log('Error: ' + error));
+
